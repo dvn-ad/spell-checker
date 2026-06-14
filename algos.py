@@ -65,6 +65,7 @@ def astar_search(typed_word: str, trie: Trie, keyboard: KeyboardLayout,
             new_g = g + cost_del
             new_h = get_heuristic(node, i + 1, L, cost_ins, cost_del)
             new_f = new_g + new_h
+            
             if new_f < best_cost:
                 state_id += 1
                 heapq.heappush(pq, (new_f, new_g, i + 1, path_word, state_id, node))
@@ -77,6 +78,7 @@ def astar_search(typed_word: str, trie: Trie, keyboard: KeyboardLayout,
                 new_g = g + sub_cost
                 new_h = get_heuristic(child_node, i + 1, L, cost_ins, cost_del)
                 new_f = new_g + new_h
+                
                 if new_f < best_cost:
                     state_id += 1
                     # Append child_char to path_word for alphabetical ordering
@@ -87,6 +89,7 @@ def astar_search(typed_word: str, trie: Trie, keyboard: KeyboardLayout,
             new_g = g + cost_ins
             new_h = get_heuristic(child_node, i, L, cost_ins, cost_del)
             new_f = new_g + new_h
+            
             if new_f < best_cost:
                 state_id += 1
                 heapq.heappush(pq, (new_f, new_g, i, path_word + child_char, state_id, child_node))
